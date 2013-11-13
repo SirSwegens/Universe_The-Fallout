@@ -12,7 +12,7 @@ from gummworld2 import context, data, toolkit, model, supermap
 COLLAPSE_KEYS = range(K_1, K_9+1)
 
 player = pygame.Rect(640, 480, 47, 51)
-playerImage = pygame.image.load(os.path.join('.', 'data', 'image', 'Creatures', 'man.png'))
+playerImage = pygame.image.load(os.path.join('data', 'image', 'Creatures', 'man.png'))
 
 class App(Engine):
     
