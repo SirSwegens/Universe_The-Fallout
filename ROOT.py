@@ -11,7 +11,8 @@ from gummworld2 import context, data, toolkit, model, supermap
 
 COLLAPSE_KEYS = range(K_1, K_9+1)
 
-
+player = pygame.Rect(640, 480, 47, 51)
+playerImage = pygame.image.load(os.path.join('.', 'data', 'image', 'Creatures', 'man.png'))
 
 class App(Engine):
     
@@ -60,6 +61,7 @@ class App(Engine):
     def draw(self, dt):
         State.screen.clear()
         State.map.draw()
+        screen.blit(player, playerImage)
         State.hud.draw()
         State.screen.flip()
     
@@ -82,7 +84,31 @@ class App(Engine):
     
     def on_quit(self):
         context.pop()
+        
+        
+if event.type == KEYDOWN:
+    # change the keyboard variables
+    if event.key == K_LEFT:
+        moveRight = False
+        moveLeft = True
+    if event.key == K_RIGHT:
+        moveLeft = False
+        moveRight = True
+    if event.key == K_UP:
+        moveDown = False
+        moveUp = True
+    if event.key == K_DOWN:
+        moveUp = False
+        moveDown = True
 
+if moveDown and player.bottom < WINDOWHEIGHT:
+    player.top += MOVESPEED
+if moveUp and player.top > 0:
+    player.top -= MOVESPEED
+if moveLeft and player.left > 0:
+    player.left -= MOVESPEED
+if moveRight and player.right < WINDOWWIDTH:
+    player.right += MOVESPEED
 
 class TiledMapHandler(MapHandler):
     
